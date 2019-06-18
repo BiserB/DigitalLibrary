@@ -1,0 +1,24 @@
+USE [master]
+GO
+
+CREATE DATABASE [DL]
+
+USE [DL]
+GO
+
+CREATE TABLE [Resources](
+	[Id] INT PRIMARY KEY IDENTITY,
+	[Name] NVARCHAR(30) NOT NULL,
+	[LINK] NVARCHAR(255) NOT NULL
+	)
+
+USE [DL]
+GO
+
+CREATE PROCEDURE getAllResources        
+AS       
+BEGIN    
+    SELECT *      
+    FROM DL.dbo.Resources 
+    ORDER BY Id
+END 

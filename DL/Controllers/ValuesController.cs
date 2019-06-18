@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DL.Models;
+using DL.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DL.Controllers
@@ -12,9 +14,11 @@ namespace DL.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<Resource>> Get()
         {
-            return new string[] { "value1", "value2" };
+            ResourcesService service = new ResourcesService();
+
+            return service.GetResources().ToList();
         }
 
         // GET api/values/5
