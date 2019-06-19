@@ -1,6 +1,5 @@
 
-# Created by https://www.gitignore.io/api/aspnetcore
-# Edit at https://www.gitignore.io/?templates=aspnetcore
+## Created by https://www.gitignore.io/api/aspnetcore
 
 ### ASPNETCore ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -271,5 +270,7 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
+
+appsettings.json
 
 # End of https://www.gitignore.io/api/aspnetcore
