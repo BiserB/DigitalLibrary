@@ -7,6 +7,6 @@ namespace DL.Common
 {
     public class Const
     {
-        public static string ConnectionString = "Server=.;Database=DL;Trusted_Connection=True;";
+        public static string ConnectionString = @"Server=.;Database=DL;Trusted_Connection=True;";
     }
 }
