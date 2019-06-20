@@ -41,6 +41,9 @@ namespace DL
                 app.UseHsts();
             }
 
+            app.UseCors(builder =>
+            builder.WithOrigins("http://localhost:55000"));
+
             app.UseHttpsRedirection();
             app.UseMvc();
         }

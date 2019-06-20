@@ -9,7 +9,7 @@ namespace DL.Common
     public class Const
     {
         public static readonly string ConnectionString = GetConnectionString();
-        
+
         private static string GetConnectionString()
         {
             var configurationBuilder = new ConfigurationBuilder();
