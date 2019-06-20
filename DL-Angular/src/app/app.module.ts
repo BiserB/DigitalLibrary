@@ -4,10 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ResourcesService } from './services/resources.service';
+import { MainNavbarComponent } from './main-navbar/main-navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainNavbarComponent
   ],
   imports: [
     BrowserModule,

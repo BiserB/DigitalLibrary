@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DL.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,20 +16,30 @@ namespace DL
 {
     public class Startup
     {
+        private const string CORS_ENABLED_ORIGINS = "CORS_Enabled_Origins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
+        
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(CORS_ENABLED_ORIGINS,
+                builder =>
+                {
+                    builder.WithOrigins(Const.CorsEnabledOrigins);
+                });
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -41,8 +52,7 @@ namespace DL
                 app.UseHsts();
             }
 
-            app.UseCors(builder =>
-            builder.WithOrigins("http://localhost:55000"));
+            app.UseCors(CORS_ENABLED_ORIGINS);
 
             app.UseHttpsRedirection();
             app.UseMvc();

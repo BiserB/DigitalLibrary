@@ -10,6 +10,8 @@ namespace DL.Common
     {
         public static readonly string ConnectionString = GetConnectionString();
 
+        public static readonly string[] CorsEnabledOrigins = { "http://localhost:4200", "http://localhost:55000" };
+
         private static string GetConnectionString()
         {
             var configurationBuilder = new ConfigurationBuilder();
