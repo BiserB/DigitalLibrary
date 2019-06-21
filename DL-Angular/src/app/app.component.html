@@ -19,8 +19,8 @@
 
 <h2>Resources: </h2>
 <ul *ngIf="(resources$ | async)?.length">
-  <li *ngFor="let user of resources$ | async">
-    {{ user.name }}
+  <li *ngFor="let resource of resources$ | async">
+     <a href="repo/{{resource.link}}" download>{{ resource.name }}</a>
   </li>
 </ul>
 <h4 *ngIf="!((resources$ | async)?.length)">
