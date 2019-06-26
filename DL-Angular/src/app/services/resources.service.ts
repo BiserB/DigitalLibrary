@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest  } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -7,13 +8,21 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ResourcesService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   getUsers(){
-    return this.http.get('https://jsonplaceholder.typicode.com/users');
+    return this.httpClient.get('https://jsonplaceholder.typicode.com/users');
   }
 
   getResources(){
-    return this.http.get('https://localhost:44373/api/values');
+    return this.httpClient.get(environment.apiValuesUrl);
   }
+
+  downloadFile(fileName: string){
+
+    const url = `${environment.apiFilesUrl}?fileName=${fileName}`;
+
+    return this.httpClient.get( url, { responseType: 'blob', headers: { ['Accept']: 'image/jpg'} });
+  }
+ 
 }

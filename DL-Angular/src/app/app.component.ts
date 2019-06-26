@@ -14,21 +14,30 @@ export class AppComponent {
   resources$: Observable<Object>;
 
   constructor(private resourcesService: ResourcesService){
-
-    // resourcesService.getUsers().subscribe(res => {
-      
-    //   this.users$ = res;
-    //   console.log("users..",this.users$);
-    // });
-
     this.users$ = resourcesService.getUsers();
-
     this.resources$ = resourcesService.getResources();
-
-    // resourcesService.getResources().subscribe(res => {
-
-    //   this.resources$ = res;
-    //   console.log("resources...", this.resources$);
-    // });
   }
+
+  DownloadFile(fileName: string) {
+    this.resourcesService.downloadFile(fileName).subscribe(
+      data => {
+
+        const downloadedFile = new Blob([data], { type: data.type });
+        const anchor = document.createElement('a');
+        document.body.appendChild(anchor);
+
+        anchor.setAttribute('style', 'display:none;');
+        anchor.download = fileName;
+        const url = URL.createObjectURL(downloadedFile);
+        anchor.href = url;
+        anchor.target = '_blank';
+        anchor.click();
+        document.body.removeChild(anchor);
+        URL.revokeObjectURL(url)
+      }
+
+    );
+
+  }
+
 }

@@ -26,3 +26,5 @@
 <h4 *ngIf="!((resources$ | async)?.length)">
   No resources!
 </h4>
+
+<a class="btn btn-primary" (click)="DownloadFile('cake.jpg')">Download</a>
